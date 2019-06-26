@@ -9,7 +9,10 @@ build/
 
 # Gradle files
 .gradle/
+<<<<<<< HEAD
 
+=======
+>>>>>>> conflict
 # Signing files
 .signing/
 
@@ -37,4 +40,11 @@ captures/
 google-services.json
 
 # Version control
+<<<<<<< HEAD
 vcs.xml
+=======
+vcs.xml
+lint/outputs/
+lint/tmp/
+lint/reports/
+>>>>>>> conflict
