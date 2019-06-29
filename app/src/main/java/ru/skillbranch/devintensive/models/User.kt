@@ -1,5 +1,6 @@
 package ru.skillbranch.devintensive.models
 
+import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
 /**
@@ -28,55 +29,34 @@ class User(
     constructor(id: String) : this(id, "John", "Doe")
 
     init {
-        // Проинициализация поля introBit в блоке init
-        //    var introBit: String = "tu tu ru tuuu"  // Поле сразу же проинициализировалось
-        introBit = getIntro()             // Поле проинициализировано вызовом ф-ции,
-                                                      // данное поле в конструкторе проинициализировать нельзя,
-                                                      // поскольку в конструкторе нельзя проводить вычисления,
-                                                      // для этого есть блоки инициализации
-                                                      // но в конструкторе можно сделать интерполяцию
-        // Использование фичи интерполирования, когда if возвращает конкретный р-т,
-        // if - выражение, а не оператор
-        println("It's Alive!!! \n" +
-                "${if (lastName === "Doe") "His name is $firstName $lastName" else "And his name is $firstName $lastName!!! } "}\n" +
-                "${getIntro()}!!!"
-        )
 
-        fun printMe() = println("""
-            id: $id
-            firstName: $firstName
-            lastName: $lastName
-            avatar: $avatar
-            rating: $rating
-            respect: $respect
-            lastVisit: $lastVisit
-            isOnline: $isOnline
-        """.trimIndent()
-            )
+        println("It's Alive!!! \n" +
+                "${if (lastName === "Doe") "His name is $firstName $lastName" else "And his name is $firstName $lastName!!! "}\n" )
+    }
+
+    companion object Factory{   // Объект Factory будет обладать некими статическими фун-ми,
+                                // к этим фун-ям можно обратиться из любой части кода
+        /**
+         * Паттерн проектирования Factory позволяет создавать экземпляры объектов
+         * и удобен перед созданием объекта, н-р, сделать к-л преобразования (отформатировать код),
+         * позволяет не отслеживать то, что будет автоматически создаваться (инкрементные идентификаторы).
+         * С помощью Factory можно провести к-л подготовительные вычисления
+         */
+        private var lastId : Int = -1       // Приватное поле
+        fun makeUser(fullName: String?) : User{  // В методе makeUser значение инкрементируется,
+                                                 // затем передается в качестве идентификатора в конструктор User
+            lastId++
+
+//            val parts : List<String>? = fullName?.split(" ")    // Содержащая строки кол-ция
+
+//            var firstName = parts?.getOrNull(0)  // Если в нашей коллекции нет объекта с индексом 0,
+//                                                              // то возвращается null
+//            var lastName = parts?.getOrNull(1)   // Возвращение 1-го индекса коллекции
+
+            // Деструктуриализация / Деструктурное присваивание и получение доступа к опред. компонентам объекта
+            val (firstName, lastName) = Utils.parseFullName(fullName)
+            return User(id="$lastId", firstName = firstName, lastName = lastName)    // Передача ИФ во вторичный конструктор
         }
 
-        //fun printMe() = println("""   // Более короткая форма записи методов в Kotlin
-        //        id: $id
-        //        firstName: $firstName
-        //        lastName: $lastName
-        //        avatar: $avatar
-        //        rating: $rating
-        //        respect: $respect
-        //        lastVisit: $lastVisit
-        //        isOnline: $isOnline
-        //    """.trimIndent())
     }
-
-    private fun getIntro(): String {
-        var firstName = String
-        var lastName = String
-        return """
-            Hello Universe !!!
-            Hello Universe ...
-
-            Hello Universe !!!
-            Hello Universe ...
-            ${"\n\n\n"}
-            $firstName $lastName
-        """.trimIndent()
-    }
+}
