@@ -31,7 +31,7 @@ data class User(
     init {
 
         println("It's Alive!!! \n" +
-                "${if (lastName === "Doe") "His name is $firstName $lastName" else "And his name is $firstName $lastName!!! "}\n" )
+                "${if (lastName === "Doe") "His/Her name is $firstName $lastName" else "And his/her name is $firstName $lastName!!! "}\n" )
     }
 
     companion object Factory{   // Объект Factory будет обладать некими статическими фун-ми,
@@ -52,6 +52,7 @@ data class User(
 //            var firstName = parts?.getOrNull(0)  // Если в нашей коллекции нет объекта с индексом 0,
 //                                                              // то возвращается null
 //            var lastName = parts?.getOrNull(1)   // Возвращение 1-го индекса коллекции
+
 
             // Деструктуриализация / Деструктурное присваивание и получение доступа к опред. компонентам объекта
             val (firstName, lastName) = Utils.parseFullName(fullName)
