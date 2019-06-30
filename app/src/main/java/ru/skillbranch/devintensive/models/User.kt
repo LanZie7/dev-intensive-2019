@@ -7,16 +7,16 @@ import java.util.*
  * Created by LanZie7 on 29.06.2019
  */
 
-class User(
-    val id: String,
-    var firstName: String?,
-    var lastName: String?,
-    var avatar: String?,
-    var rating: Int = 0,
-    var respect: Int = 0,
-    val lastVisit: Date? = null,    // время последнего визита пользователя в сети
-    val isOnline: Boolean = false,
-    var introBit: String = "$firstName $lastName"
+data class User(
+        val id: String,
+        var firstName: String?,
+        var lastName: String?,
+        var avatar: String?,
+        var rating: Int = 0,
+        var respect: Int = 0,
+        val lastVisit: Date? = null,    // время последнего визита пользователя в сети
+        val isOnline: Boolean = false,
+        var introBit: String = "$firstName $lastName"
 ) {
 
     constructor(id: String, firstName: String?, lastName: String?) : this(
