@@ -14,17 +14,23 @@ fun Date.format(pattern:String = "HH:mm:ss dd.MM.yy"): String {    //Ф-ия р�
     return dateFormat.format(this)
 }
 
-fun Date.add(value:Int, units:String): Date {   //extension ф-ия позволит добавить к объекту даты определенно временной сдвиг,
+fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECOND): Date {   //extension ф-ия позволит добавить к объекту даты определенно временной сдвиг,
                                                 // кот. будет измеряться в задаваемыми нами величинами
     var time = this.time
 
     time += when(units) {
-        "second","seconds" -> value * SECOND
-        "minute","minutes" -> value * MINUTE
-        "hour","hours" -> value * HOUR
-        "day","days" -> value * DAY
-        else -> throw IllegalStateException("invalid unit")
+        TimeUnits.SECOND -> value * SECOND
+        TimeUnits.MINUTE -> value * MINUTE
+        TimeUnits.HOUR -> value * HOUR
+        TimeUnits.DAY -> value * DAY
     }
     this.time = time
     return this
+}
+
+enum class TimeUnits{
+    SECOND,
+    MINUTE,
+    HOUR,
+    DAY
 }
