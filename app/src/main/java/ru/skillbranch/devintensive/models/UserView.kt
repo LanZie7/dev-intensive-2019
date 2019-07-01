@@ -19,7 +19,4 @@ class UserView(
                 initials: $initials         
                 """.trimIndent())
         }
-
-
-
 }
