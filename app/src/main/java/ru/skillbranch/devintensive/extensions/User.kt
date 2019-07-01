@@ -9,7 +9,7 @@ fun User.toUserView() : UserView {  // Поскольку это data class, dat
 
     val nickName = Utils.transliteration("$firstName $lastName")
     val initials = Utils.toInitials(firstName, lastName)
-    val status = if(lastVisit == null) "Еще ни разу не был" else if (isOnline) "online" else "Последний раз был ${lastVisit.humanizedDiff()}"
+    val status = if(lastVisit == null) "Еще ни разу не был" else if (isOnline) "online" else "Последний раз был ${lastVisit?.humanizedDiff()}"
 
     return UserView(
         id,
@@ -23,5 +23,6 @@ fun User.toUserView() : UserView {  // Поскольку это data class, dat
 // Д/з: написать реализацию (расширение для объекта Date)
 private fun Date.humanizedDiff(date:Date = Date()): String {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return " "
 
 }

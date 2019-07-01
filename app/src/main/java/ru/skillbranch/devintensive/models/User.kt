@@ -14,9 +14,11 @@ data class User(
         var avatar: String?,
         var rating: Int = 0,
         var respect: Int = 0,
-        val lastVisit: Date? = null,    // время последнего визита пользователя в сети
-        val isOnline: Boolean = false,
-        var introBit: String = "$firstName $lastName"
+        var lastVisit: Date? = Date(),
+        var isOnline: Boolean = false
+//        var introBit: String = "$firstName $lastName"
+
+// Реализуй паттерн Factory с методом makeUser(fullName), принимающий в качесте аргумента полное имя пользователя и возвращающий экземпляр класса User
 ) {
 
     constructor(id: String, firstName: String?, lastName: String?) : this(
@@ -30,8 +32,8 @@ data class User(
 
     init {
 
-        println("It's Alive!!! \n" +
-                "${if (lastName === "Doe") "His/Her name is $firstName $lastName" else "And his/her name is $firstName $lastName!!! "}\n" )
+        println("Hello Humanity!!! \n" +
+                "${if (lastName === "Bochkova") "Her name is $firstName $lastName" else "And her name is $firstName $lastName!!! "}\n" )
     }
 
     companion object Factory{   // Объект Factory будет обладать некими статическими фун-ми,
@@ -47,11 +49,11 @@ data class User(
                                                  // затем передается в качестве идентификатора в конструктор User
             lastId++
 
-//            val parts : List<String>? = fullName?.split(" ")    // Содержащая строки кол-ция
+//          var parts : List<String>? = fullName?.split(" ")    // Содержащая строки кол-ция
 
-//            var firstName = parts?.getOrNull(0)  // Если в нашей коллекции нет объекта с индексом 0,
+//          var firstName = parts?.getOrNull(0)  // Если в нашей коллекции нет объекта с индексом 0,
 //                                                              // то возвращается null
-//            var lastName = parts?.getOrNull(1)   // Возвращение 1-го индекса коллекции
+//          var lastName = parts?.getOrNull(1)   // Возвращение 1-го индекса коллекции
 
 
             // Деструктуриализация / Деструктурное присваивание и получение доступа к опред. компонентам объекта
