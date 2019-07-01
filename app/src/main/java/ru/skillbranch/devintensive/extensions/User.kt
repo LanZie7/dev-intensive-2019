@@ -23,5 +23,6 @@ fun User.toUserView() : UserView {  // Поскольку это data class, dat
 // Д/з: написать реализацию (расширение для объекта Date)
 private fun Date.humanizedDiff(date:Date = Date()): String {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return " "
 
 }
