@@ -2,21 +2,17 @@ package ru.skillbranch.devintensive.models
 
 import java.util.*
 
-abstract class BaseMessage {
+abstract class BaseMessage (
         val id: String,
-        val from: User?,
+        var from: User?,
         val chat: Chat,
+        var payload: String?,
         val isIncoming: Boolean = false,
         val date: Date = Date()
+){
+
 
     data class Chat (val id: String, val from: User?, val isIncoming: Boolean = false, val date: Date = Date())
-
-    constructor (chat: Chat) {
-        this.id,
-        this.from,
-        this.isIncoming,
-        this.date
-    }
 
     abstract fun formatMessage(): String
 
@@ -36,9 +32,8 @@ abstract class BaseMessage {
             chat: Chat,
             isIncoming: Boolean = false,
             date: Date = Date(),
-            var image: String?,
             var text: String?
-        ) : BaseMessage(id, from, chat, isIncoming, date) {
+        ) : BaseMessage(id, from, chat, text, isIncoming, date) {
             override fun formatMessage(): String {
                 return "$id, $from/$chat, text"
 
@@ -50,9 +45,8 @@ abstract class BaseMessage {
             chat: Chat,
             isIncoming: Boolean = false,
             date: Date = Date(),
-            var image: String?,
-            var text: String?
-        ) : BaseMessage(id, from, chat, isIncoming, date) {
+            var image: String?
+        ) : BaseMessage(id, from, chat, image, isIncoming, date) {
                 override fun formatMessage(): String {
                     return "$id, $from/$chat, image"
                 }
