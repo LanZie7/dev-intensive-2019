@@ -28,12 +28,10 @@ data class User(
         avatar = null
     )
 
-    constructor(id: String) : this(id, "John", "Doe")
-
     init {
 
-        println("Hello Humanity!!! \n" +
-                "${if (lastName === "Bochkova") "Her name is $firstName $lastName" else "And her name is $firstName $lastName!!! "}\n" )
+        println("${if (lastName === "Бочкова") "$firstName $lastName" 
+        else "$firstName $lastName"}\n" )
     }
 
     companion object Factory{   // Объект Factory будет обладать некими статическими фун-ми,
@@ -44,7 +42,7 @@ data class User(
          * позволяет не отслеживать то, что будет автоматически создаваться (инкрементные идентификаторы).
          * С помощью Factory можно провести к-л подготовительные вычисления
          */
-        private var lastId : Int = -1       // Приватное поле
+        private var lastId : Int = -1            // Приватное поле
         fun makeUser(fullName: String?) : User{  // В методе makeUser значение инкрементируется,
                                                  // затем передается в качестве идентификатора в конструктор User
             lastId++

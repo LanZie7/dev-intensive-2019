@@ -2,13 +2,13 @@ package ru.skillbranch.devintensive.models
 
 import java.util.*
 
-abstract class BaseMessage (
-        val id: String,
-        var from: User?,
-        val chat: Chat,
-        var payload: String?,
-        val isIncoming: Boolean = false,
-        val date: Date = Date()
+abstract class BaseMessage(
+    val id: String,
+    val from: User?,
+    val chat: Chat,
+    val payload: Any?,
+    val isIncoming: Boolean = false,
+    val date: Date = Date()
 ){
 
 
