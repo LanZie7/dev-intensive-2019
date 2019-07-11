@@ -9,18 +9,18 @@ fun User.toUserView() : UserView {  // Поскольку это data class, dat
 
     val nickName = Utils.transliteration("$firstName $lastName")
     val initials = Utils.toInitials(firstName, lastName)
-    val status = if(lastVisit == null) "Еще ни разу не был" else if (isOnline) "online" else "Последний раз был ${lastVisit?.humanizedDiff()}"
+//    val status = if(lastVisit == null) "Еще ни разу не был" else if (isOnline) "online" else "Последний раз был ${lastVisit?.humanizedDiff()}"
 
-    return UserView(
+    return UserView (
         id,
         fullName = "$firstName $lastName",  // Конкатинация ИФ, кот. получаем из объекта User
         avatar = avatar,
-        nickName = nickName ,
-        initials = initials ,
-        status = status )
-}
+        nickName = nickName,
+        initials = initials
+//        status = status )
+    ) }
 
 // Д/з: написать реализацию (расширение для объекта Date)
-private fun Date.humanizedDiff(date:Date = Date()): String {
-    return " "
-}
+//private fun Date.humanizedDiff(date:Date = Date()): String {
+//    return " "
+//}
