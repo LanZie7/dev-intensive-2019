@@ -1,5 +1,6 @@
 package ru.skillbranch.devintensive.models
 
+import ru.skillbranch.devintensive.extensions.humanizedDiff
 import java.util.*
 
 abstract class BaseMessage(
@@ -21,7 +22,7 @@ abstract class BaseMessage(
         fun makeMessage(from: User?, chat: Chat, date: Date = Date(), type: String = "text", payload: Any?, isIncoming: Boolean = false): BaseMessage {
             lastId++
             return when (type) {
-                "image" -> AbstractFactory.TextMessage.ImageMessage("$lastId", from, chat, date = date, image = payload as String)
+                "image" -> AbstractFactory.ImageMessage("$lastId", from, chat, date = date, image = payload as String)
                     else -> TextMessage("$lastId", from, chat, date = date, text = payload as String) //Лана получила изображение "https://anyurl.com" 20 минут назад
             }
         }
@@ -35,8 +36,8 @@ abstract class BaseMessage(
             date: Date = Date(),
             var text: String?
         ) : BaseMessage(id, from, chat, text, isIncoming, date) {
-            override fun formatMessage(): String {
-                return "$id, $from/$chat, text"
+            override fun formatMessage(): String =
+                "id: $id ${from?.firstName} ${if(isIncoming) "получил(а)" else "отправил(а)"} сообщение $text ${date.humanizedDiff()}"
 
         }
 
@@ -48,10 +49,9 @@ abstract class BaseMessage(
             date: Date = Date(),
             var image: String?
         ) : BaseMessage(id, from, chat, image, isIncoming, date) {
-                override fun formatMessage(): String {
-                    return "$id, $from/$chat, image"
+            override fun formatMessage(): String =
+                "id: $id ${from?.firstName} ${if(isIncoming) "получил(а)" else "отправил(а)"} сообщение $image ${date.humanizedDiff()}"
                 }
 
             }
     }
-} }
