@@ -27,6 +27,11 @@ fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECOND): Date {   //extensi
     return this
 }
 
+// Д/з: написать реализацию (расширение для объекта Date)
+fun Date.humanizedDiff(date:Date = Date()): String {
+    return " "
+}
+
 //fun Date.humanizeDiff(): String = ""
 //fun Date.humanizeDiff(date: Date): String = ""
 

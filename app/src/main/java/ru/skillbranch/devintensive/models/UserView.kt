@@ -16,7 +16,7 @@ class UserView(
                 nickName: $nickName 
                 avatar: $avatar 
                 status: $status 
-                initials: $initials         
+                initials: $initials
                 """.trimIndent())
         }
 }
