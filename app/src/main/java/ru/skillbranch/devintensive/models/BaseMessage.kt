@@ -26,6 +26,7 @@ abstract class BaseMessage(
             }
         }
 
+
         class TextMessage(
             id: String,
             from: User?,

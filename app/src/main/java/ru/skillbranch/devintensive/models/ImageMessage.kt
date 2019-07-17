@@ -11,6 +11,6 @@ class ImageMessage (
     var image: String?
 ) : BaseMessage(id, from, chat, image, isIncoming, date) {
     override fun formatMessage(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return "$id, $from/$chat, image"
     }
 }

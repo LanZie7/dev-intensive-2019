@@ -14,8 +14,8 @@ fun User.toUserView() : UserView {  // Поскольку это data class, dat
     return UserView (
             id,
             fullName = "$firstName $lastName",  // Конкатинация ИФ, кот. получаем из объекта User
-            avatar = avatar)
             nickName = nickName,
-            initials = initials,
-            status = status
+            initials = initials as String,
+            avatar = avatar,
+            status = status)
     }
