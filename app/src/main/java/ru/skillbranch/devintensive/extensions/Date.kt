@@ -28,7 +28,7 @@ fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECOND): Date {   //extensi
 }
 
 fun Date.humanizeDiff(date: Date = Date()): String {
-    return " "
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
     enum class TimeUnits{

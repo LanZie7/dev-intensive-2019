@@ -7,7 +7,7 @@ abstract class BaseMessage(
     val id: String,
     val from: User?,
     val chat: Chat,
-    val payload: Any?,
+//    val payload: Any?,
     val isIncoming: Boolean = false,
     val date: Date = Date()
 ){
@@ -19,11 +19,11 @@ abstract class BaseMessage(
 
     companion object AbstractFactory {
         var lastId = -1
-        fun makeMessage(from: User?, chat: ru.skillbranch.devintensive.models.Chat, date: Date = Date(), type: String = "text", payload: Any?, isIncoming: Boolean = false): BaseMessage {
+        fun makeMessage(from: User?, chat: Chat, date: Date = Date(), type: String = "text", isIncoming: Boolean = false): BaseMessage {
             lastId++
             return when (type) {
-                "image" -> AbstractFactory.ImageMessage("$lastId", from, chat, date = date, image = payload as String)
-                    else -> TextMessage("$lastId", from, chat, date = date, text = payload as String) //Лана получила изображение "https://anyurl.com" 20 минут назад
+                "image" -> ImageMessage("$lastId", from, chat, date = date, isIncoming = false, image = "image")
+                    else -> TextMessage("$lastId", from, chat, date = date, isIncoming = false, text = "text") //Лана получила изображение "https://anyurl.com" 20 минут назад
             }
         }
 
@@ -34,7 +34,7 @@ abstract class BaseMessage(
             isIncoming: Boolean = false,
             date: Date = Date(),
             var text: String?
-        ) : BaseMessage(id, from, chat, text, isIncoming, date) {
+        ) : BaseMessage(id, from, chat, date = date, isIncoming = false) {
             override fun formatMessage(): String =
                 "id: $id ${from?.firstName} ${if(isIncoming) "получил(а)" else "отправил(а)"} сообщение $text ${date.humanizeDiff()}"
 
@@ -47,7 +47,7 @@ abstract class BaseMessage(
             isIncoming: Boolean = false,
             date: Date = Date(),
             var image: String?
-        ) : BaseMessage(id, from, chat, image, isIncoming, date) {
+        ) : BaseMessage(id, from, chat, date = date, isIncoming = false) {
             override fun formatMessage(): String =
                 "id: $id ${from?.firstName} ${if(isIncoming) "получил(а)" else "отправил(а)"} сообщение $image ${date.humanizeDiff()}"
                 }
