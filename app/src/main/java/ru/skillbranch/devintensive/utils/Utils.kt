@@ -1,7 +1,5 @@
 package ru.skillbranch.devintensive.utils
 
-import android.service.voice.AlwaysOnHotwordDetector
-
 object Utils {
     fun parseFullName (fullName: String?): Pair<String?, String?> {
         var fullNameExtended : String? = fullName
@@ -21,11 +19,11 @@ object Utils {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }}
 
-//    fun transliteration(payload: String, divider: String = " ") : String {
-//        return " "
+    fun transliteration(payload: String, divider: String = " ") : String {
+        return " "
 
-//    }
-//
-//    fun toInitials(firstName: String?, lastName: String?): String? {
-//        return " "
-//    }
+    }
+
+    fun toInitials(firstName: String?, lastName: String?): String? {
+        return " "
+    }

@@ -1,6 +1,6 @@
 package ru.skillbranch.devintensive.models
 
-import ru.skillbranch.devintensive.extensions.humanizedDiff
+import ru.skillbranch.devintensive.extensions.humanizeDiff
 import java.util.*
 
 abstract class BaseMessage(
@@ -36,7 +36,7 @@ abstract class BaseMessage(
             var text: String?
         ) : BaseMessage(id, from, chat, text, isIncoming, date) {
             override fun formatMessage(): String =
-                "id: $id ${from?.firstName} ${if(isIncoming) "получил(а)" else "отправил(а)"} сообщение $text ${date.humanizedDiff()}"
+                "id: $id ${from?.firstName} ${if(isIncoming) "получил(а)" else "отправил(а)"} сообщение $text ${date.humanizeDiff()}"
 
         }
 
@@ -49,7 +49,7 @@ abstract class BaseMessage(
             var image: String?
         ) : BaseMessage(id, from, chat, image, isIncoming, date) {
             override fun formatMessage(): String =
-                "id: $id ${from?.firstName} ${if(isIncoming) "получил(а)" else "отправил(а)"} сообщение $image ${date.humanizedDiff()}"
+                "id: $id ${from?.firstName} ${if(isIncoming) "получил(а)" else "отправил(а)"} сообщение $image ${date.humanizeDiff()}"
                 }
 
             }
